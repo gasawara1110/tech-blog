@@ -3,7 +3,7 @@ title: "ロボティクス技術ブログを始めます"
 emoji: "🤖"
 type: "idea"
 topics: ["robotics", "ros2", "mujoco", "control", "hardware"]
-published: false
+published: true
 ---
 
 # はじめに

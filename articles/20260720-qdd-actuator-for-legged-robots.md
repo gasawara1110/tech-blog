@@ -3,7 +3,7 @@ title: "歩行ロボットとQDDアクチュエータ入門"
 emoji: "🦿"
 type: "tech"
 topics: ["robotics", "motor", "qdd", "hardware", "control"]
-published: false
+published: true
 ---
 
 # はじめに
