@@ -1,0 +1,152 @@
+---
+title: "An Introduction to QDD Actuators for Legged Robots"
+emoji: "🦿"
+type: "tech"
+topics: ["robotics", "motor", "qdd", "hardware", "control"]
+published: false
+---
+
+> This article is an English translation and adaptation of the original Japanese article.
+
+# Introduction
+
+I recently gave an internal lightning talk about **QDD actuators**, which are widely used in legged robots.
+
+QDD stands for **Quasi Direct Drive**. It usually refers to an actuator architecture that combines a high-torque-density BLDC motor with a low-ratio gearbox. This type of actuator has become increasingly common in quadruped robots and humanoid robots.
+
+In this article, I use the slides from the talk and add short explanations below each slide.
+
+![](/images/20260720-qdd-actuator-for-legged-robots/slide-01.png)
+
+This article covers the following five topics:
+
+1. Why legged robots and QDD actuators matter now
+2. What a QDD actuator is
+3. How QDD differs from conventional high-reduction-ratio actuators
+4. Advantages of low reduction ratios
+5. Why QDD is important for legged robots
+
+The contents are based on publicly available information and my own understanding. Market forecasts and cost-structure estimates vary depending on the assumptions of each source, so I treat them as background material rather than strict numerical references.
+
+# 1. Why Legged Robots and QDD Actuators Matter Now
+
+![](/images/20260720-qdd-actuator-for-legged-robots/slide-02.png)
+
+Humanoid robots and quadruped robots have been attracting increasing attention in recent years.
+
+This is not only because of advances in AI, but also because many other key technologies have progressed at the same time: motors, gearboxes, batteries, edge computers, sensors, simulation environments, and manufacturing technologies.
+
+Among these components, actuators are especially important because they strongly affect robot performance, cost, and controllability.
+
+In the end, actuators are the parts that physically generate force and motion. Even if the AI system is highly capable, the overall robot performance will be limited if the joints are heavy, rigid, hot, fragile, or difficult to control in force.
+
+For that reason, actuator selection is one of the central topics when thinking about legged robots.
+
+# 2. What Is a QDD Actuator?
+
+![](/images/20260720-qdd-actuator-for-legged-robots/slide-03.png)
+
+A QDD actuator can be roughly described as a **high-torque-density motor combined with a low-ratio gearbox**.
+
+In many conventional robot actuators, motor torque is amplified using a gearbox. A high reduction ratio makes it easier to obtain large output torque from a small motor.
+
+In QDD actuators, the reduction ratio is intentionally kept low. This requires the motor side to handle higher torque density and larger currents, but it also reduces the influence of friction and reflected inertia at the output side.
+
+Some recent QDD actuators also use dual encoders, with one encoder on the motor side and another on the output side. This makes it easier to observe the output-side state, including gearbox compliance and backlash.
+
+For robots that interact with people or the environment, such as legged robots, exoskeletons, and collaborative robots, this output-side behavior is very important.
+
+# 3. Difference from Conventional High-Reduction-Ratio Actuators
+
+![](/images/20260720-qdd-actuator-for-legged-robots/slide-04.png)
+
+Conventional high-reduction-ratio actuators are good at generating large torque from relatively small motors. They are also strong in static holding and precise positioning.
+
+However, as the reduction ratio increases, the influence of gearbox friction and reflected inertia tends to become larger.
+
+QDD takes the opposite approach. By keeping the reduction ratio low, it aims for better backdrivability, easier force control, and better behavior when external forces are applied.
+
+Of course, QDD is not perfect.
+
+Because the reduction ratio is low, larger motor currents are often required to generate the same output torque. This can make thermal design and power supply design more difficult. For applications that require holding a large static torque for a long time, high-reduction-ratio actuators may still be a better choice.
+
+In short, QDD is not a universal solution. It is an actuator architecture that is especially suitable for robots that need contact-rich motion, force control, and dynamic behavior.
+
+# 4. Advantages of Low Reduction Ratios
+
+![](/images/20260720-qdd-actuator-for-legged-robots/slide-05.png)
+
+One major advantage of a low reduction ratio is that it reduces the effects of friction and reflected inertia.
+
+Gearboxes involve several types of friction, such as static friction, Coulomb friction, viscous friction, and the Stribeck effect. In low-speed regions, friction can become nonlinear, causing behavior such as a heavy start followed by easier motion once movement begins.
+
+This friction also affects torque estimation.
+
+Ideally, the torque generated by a BLDC motor can be estimated from the current.
+
+```text
+Output torque ≈ efficiency × reduction ratio × torque constant × current
+```
+
+In reality, however, friction and losses inside the gearbox create errors between the current-based torque estimate and the actual output torque.
+
+Reflected inertia is another important point. It scales with the square of the reduction ratio.
+
+```text
+Reflected inertia at the output side ≈ reduction ratio^2 × motor inertia
+```
+
+Therefore, when the reduction ratio is large, the motor inertia observed from the output side becomes much larger, making the actuator harder to backdrive.
+
+QDD reduces the influence of gearbox friction, nonlinear behavior, and reflected inertia by using a low reduction ratio. This makes it easier to use in low-speed force control and contact-rich applications.
+
+# 5. Why QDD Is Important for Legged Robots
+
+![](/images/20260720-qdd-actuator-for-legged-robots/slide-06.png)
+
+Legged robot joints are subject to several demanding requirements at the same time.
+
+During walking, impact occurs at ground contact. During the stance phase, the joints must continuously support body weight. During push-off, large torque and power are required. During the swing phase, the leg must move quickly and respond with sufficient speed.
+
+As a result, legged robot joints need the following properties:
+
+- Adaptability to ground-contact impact
+- Safety when receiving external forces
+- Ease of force control
+- Low-speed high-torque motion
+- Short-term peak power
+- Speed response during the swing phase
+
+In this kind of application, it is not enough to simply position the joint accurately. The robot must also handle forces while interacting with the environment.
+
+Because QDD actuators offer high backdrivability, low reflected inertia, and good compatibility with force control, they are an attractive option for joints in legged robots.
+
+# Slide PDF
+
+The PDF version of the slides will be linked here.
+
+- TODO: After pushing the PDF to GitHub, replace this line with the PDF URL.
+- `images/20260720-qdd-actuator-for-legged-robots/20260714_QDD_LT.pdf`
+
+# References
+
+![](/images/20260720-qdd-actuator-for-legged-robots/slide-07.png)
+
+- MarketsandMarkets, "Humanoid Robot Market Size, Share, Latest Trends & Growth Analysis"
+  - https://www.marketsandmarkets.com/Market-Reports/humanoid-robot-market-99567653.html
+- Reeman Robot, "Humanoid Robot Industry Chain And Prospect Analysis"
+  - https://www.reemanrobot.com/news/humanoid-robot-industry-chain-and-prospect-ana-75674717.html
+- Aman Singh et al., "A Chain-Driven, Sandwich-Legged Quadruped Robot: Design and Experimental Analysis"
+  - https://arxiv.org/abs/2503.14255
+- Emma Reznick et al., "Lower-limb kinematics and kinetics during continuously varying human locomotion", Scientific Data, 2021
+  - https://www.nature.com/articles/s41597-021-01057-9
+- IEEE DataPort, "Lower-limb kinematics and kinetics during continuously varying human locomotion" Dataset
+  - https://doi.org/10.21227/sngq-4x29
+
+# Closing
+
+QDD actuators are not just low-ratio motor modules. I think they are an important component for achieving contact adaptation, force control, and speed response in legged robots.
+
+At the same time, they also introduce challenges such as large currents, heat generation, power supply design, and static torque holding. They are not better than high-reduction-ratio actuators in every application.
+
+In future articles, I would like to use simulations such as MuJoCo to look more closely at joint torque, velocity, and power during walking, and then connect that to QDD actuators and regenerative energy.
