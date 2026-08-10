@@ -3,7 +3,7 @@ title: "RobStride EduLite 05 をSocketCANで動かしてみた"
 emoji: "🦾"
 type: "tech"
 topics: ["robotics", "motor", "can", "socketcan", "python"]
-published: false
+published: true
 ---
 
 # 1. はじめに
