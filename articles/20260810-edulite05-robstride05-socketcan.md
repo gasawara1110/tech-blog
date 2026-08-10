@@ -6,9 +6,9 @@ topics: ["robotics", "motor", "can", "socketcan", "python"]
 published: false
 ---
 
-# 1.はじめに
+# 1. はじめに
 
-今回は、小型QDD系アクチュエータである **RobStride EduLite 05 ** を、Linux の **SocketCAN** 経由で動かしてみた記録です。
+今回は、小型QDD系アクチュエータである **RobStride EduLite 05** を、Linux の **SocketCAN** 経由で動かしてみた記録です。
 
 前回の記事では、歩行ロボットで使われる QDD アクチュエータについて整理しました。
 
@@ -20,7 +20,7 @@ QDD アクチュエータは、低減速比によるバックドライブ性や�
 
 この記事は、厳密なプロトコル解説というより、**「まず実機を安全に認識して、CLIから触れるようにする」** ところまでの動作メモです。
 
-# 2.注意
+# 2. 注意
 
 実機モータは、意図せず回転すると危険です。
 
@@ -35,7 +35,7 @@ QDD アクチュエータは、低減速比によるバックドライブ性や�
 
 今回の確認でも、最初は `scan id` やパラメータ読み出しなど、モータを動かさない操作から始めています。
 
-# 3.今回やること
+# 3. 今回やること
 
 今回の記事で扱う内容は以下です。
 
@@ -179,9 +179,9 @@ Scanning motor IDs by read_parameter(VBUS)...
 range   = 0x01-0x7F
 timeout = 0.050 sec/id
 NOTE: This command sends read-only parameter requests. It does not move motors.
-found motor: motor_id=0x7F (1), vbus=24.352 V, run_mode=0 (motion_control)
+found motor: motor_id=0x7F (127), vbus=24.352 V, run_mode=0 (motion_control)
 ---- scan result ----
-- motor_id=0x7F (1)
+- motor_id=0x7F (127)
 ```
 
 `motor_id=0x7F` のモータが見つかりました。モータの出荷時IDの初期値は0x7Fのようです。
