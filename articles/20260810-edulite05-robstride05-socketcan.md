@@ -66,7 +66,7 @@ CAN インターフェースは Linux 側で `can0` として認識させてい�
 今回の実験では、モータを安全に固定するために、3Dプリンタで自作したモータマウントとモータアームを使用しました。  
 机上でモータをそのまま回すと危険なので、初期の動作確認ではこのように固定治具を用意しておくと安心です。
 
-![](/images/20260810-edulite05-robstride05-socketcan/motor_mount_arm.png)
+![](/images/20260810-edulite05-robstride05-socketcan/motor_mount_arm.jpg)
 
 図：動作確認に使用した自作モータマウントとモータアーム
 
